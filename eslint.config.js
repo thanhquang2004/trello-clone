@@ -36,6 +36,13 @@ export default [
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
 
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: ["@mui/*/*/*"],
+        },
+      ],
+
       // Custom rules
       "no-console": 1,
       "no-lonely-if": 1,
