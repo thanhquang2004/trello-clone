@@ -1,12 +1,13 @@
 import {
+  Box,
+  Container,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
-  Typography,
   useColorScheme,
 } from "@mui/material";
-import Button from "@mui/material/Button";
+import theme from "./theme";
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -34,28 +35,43 @@ function ModeSelect() {
   );
 }
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  return (
-    <Button
-      onClick={() => {
-        setMode(mode === "dark" ? "light" : "dark");
-      }}
-    >
-      {mode === "dark" ? "Light" : "Dark"} mode
-    </Button>
-  );
-}
-
 function App() {
   return (
-    <>
-    <ModeSelect />
-    <hr />
-      <ModeToggle />
-      <Button variant="contained">Hello world</Button>
-      <Typography variant="h1">Hello world</Typography>
-    </>
+    <Container disableGutters maxWidth={false} sx={{ height: "100vh" }}>
+      <Box
+        sx={{
+          backgroundColor: "primary.light",
+          width: 1,
+          height: (theme) => theme.trelloCustomizations.appBarHeight,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <ModeSelect />
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: "primary.dark",
+          width: 1,
+          height: (theme) => theme.trelloCustomizations.boardBarHeight,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        Board Bar
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: "primary.main",
+          width: 1,
+          height: (theme) => `calc(100vh - ${theme.trelloCustomizations.appBarHeight} - ${theme.trelloCustomizations.boardBarHeight})`,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        Board Content
+      </Box>
+    </Container>
   );
 }
 
