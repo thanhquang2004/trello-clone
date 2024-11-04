@@ -69,13 +69,13 @@ function AppBar() {
           type="search"
         />
         <ModeSelect />
-        <Tooltip title="Notification" sx={{ cursor: "pointer" }}>
+        <Tooltip title="Notifications" sx={{ cursor: "pointer" }}>
           <Badge color="secondary" variant="dot">
-            <NotificationsNoneIcon />
+            <NotificationsNoneIcon sx={{ color: "primary.main" }} />
           </Badge>
         </Tooltip>
-        <Tooltip title="Notification" sx={{ cursor: "pointer" }}>
-          <HelpOutlineIcon />
+        <Tooltip title="Help" sx={{ cursor: "pointer" }}>
+          <HelpOutlineIcon sx={{ color: "primary.main" }}/>
         </Tooltip>
         <Profiles />
       </Box>
