@@ -17,6 +17,7 @@ import Templates from "./Menus/Templates";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Profiles from "./Menus/Profile";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 function AppBar() {
   // const [invisible, setInvisible] = React.useState(false);
@@ -62,7 +63,9 @@ function AppBar() {
           <Recents />
           <Starred />
           <Templates />
-          <Button variant="outlined">Create</Button>
+          <Button variant="outlined" startIcon={<LibraryAddIcon />}>
+            Create
+          </Button>
         </Box>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
