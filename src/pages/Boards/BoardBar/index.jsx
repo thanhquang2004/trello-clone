@@ -4,16 +4,16 @@ import LockIcon from "@mui/icons-material/Lock";
 import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
 const MENU_STYLE = {
-  color: "primary.main",
-  bgcolor: "white",
+  color: "white",
+  bgcolor: "transparent",
   border: "none",
   px: "5px",
   borderRadius: "5px",
   "& .MuiSvgIcon-root": {
-    color: "primary.main",
+    color: "white",
   },
   "&:hover": {
     bgcolor: "primary.50",
@@ -32,7 +32,9 @@ function BoardBar() {
         justifyContent: "space-between",
         gap: 2,
         overflowX: "auto",
-        borderTop: "1px solid #00bfa5",
+        borderBottom: "1px solid #00bfa5",
+        bgcolor: (theme) =>
+          theme.palette.mode === "dark" ? "#dark" : "#1976d2",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -68,10 +70,17 @@ function BoardBar() {
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-      <Button variant="outlined" startIcon={<PersonAddAlt1Icon />}>Invite</Button>
+        <Button
+          variant="outlined"
+          startIcon={<PersonAddAlt1Icon />}
+          sx={{ color: "white", borderColor: "white", "&:hover": { borderColor: "white" } }}
+        >
+          Invite
+        </Button>
         <AvatarGroup
           max={4}
           sx={{
+            gap: "-8px",
             "& .MuiAvatar-root": {
               width: 34,
               height: 34,
@@ -79,6 +88,21 @@ function BoardBar() {
             },
           }}
         >
+          <Tooltip title="Quang">
+            <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
+          </Tooltip>
+          <Tooltip title="Quang">
+            <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
+          </Tooltip>
+          <Tooltip title="Quang">
+            <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
+          </Tooltip>
+          <Tooltip title="Quang">
+            <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
+          </Tooltip>
+          <Tooltip title="Quang">
+            <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
+          </Tooltip>
           <Tooltip title="Quang">
             <Avatar alt="Quang" src="/static/images/avatar/1.jpg" />
           </Tooltip>

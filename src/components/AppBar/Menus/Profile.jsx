@@ -48,7 +48,7 @@ function Profiles() {
         sx={{ boxShadow: "10 10 10px 10 rgba(0,0,0,0.1)" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width: 28, height: 28, mr: 2 }} /> Profile
+          <Avatar sx={{ width: 36, height: 36, mr: 2 }} /> Profile
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Avatar sx={{ width: 28, height: 28, mr: 2 }} /> My account
