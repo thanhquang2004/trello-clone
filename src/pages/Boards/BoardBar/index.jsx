@@ -73,18 +73,25 @@ function BoardBar() {
         <Button
           variant="outlined"
           startIcon={<PersonAddAlt1Icon />}
-          sx={{ color: "white", borderColor: "white", "&:hover": { borderColor: "white" } }}
+          sx={{
+            color: "white",
+            borderColor: "white",
+            "&:hover": { borderColor: "white" },
+          }}
         >
           Invite
         </Button>
         <AvatarGroup
           max={4}
           sx={{
-            gap: "-8px",
+            gap: "-5px",
             "& .MuiAvatar-root": {
               width: 34,
               height: 34,
               fontSize: "16px",
+              color: "white",
+              cursor: "pointer",
+              "&:first-of-type": { bgcolor: "#a4b0be" },
             },
           }}
         >
