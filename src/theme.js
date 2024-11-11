@@ -44,14 +44,23 @@ const theme = extendTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          fontSize: "0.875",
+          fontSize: "0.875rem",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          "&.MuiTypography-body1": {
+            fontSize: "0.875rem",
+          },
         },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          fontSize: "0.875",
+          fontSize: "0.875rem",
 
           "& fieldset": {
             borderWidth: "0.2px !important",
