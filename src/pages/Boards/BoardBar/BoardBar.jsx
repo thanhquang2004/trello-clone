@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LockIcon from "@mui/icons-material/Lock";
@@ -5,6 +6,7 @@ import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { capitalizeFirstLetter } from "~/utils/formatter";
 
 const MENU_STYLE = {
   color: "white",
@@ -20,7 +22,7 @@ const MENU_STYLE = {
   },
 };
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       px={2}
@@ -40,13 +42,13 @@ function BoardBar() {
         <Chip
           sx={MENU_STYLE}
           icon={<DashboardIcon />}
-          label="Board"
+          label={board?.title}
           clickable
         />
         <Chip
           sx={MENU_STYLE}
           icon={<LockIcon />}
-          label="Public/private workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
         <Chip
