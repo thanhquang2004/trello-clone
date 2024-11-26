@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import GroupIcon from "@mui/icons-material/Group";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import CommentIcon from "@mui/icons-material/Comment";
@@ -12,7 +13,15 @@ import {
 
 import { Card as MuiCard } from "@mui/material";
 
-function Card() {
+function Card({ card }) {
+  const shouldShowCardACtions = () => {
+    return (
+      !!card?.members?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
+    );
+  };
+
   return (
     <MuiCard
       sx={{
@@ -21,25 +30,31 @@ function Card() {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
+
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>Lizard</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: "0 4px 8px 4px" }}>
-        <Button size="small" startIcon={<GroupIcon />}>
-          20
-        </Button>
-        <Button size="small" startIcon={<CommentIcon />}>
-          15
-        </Button>
-        <Button size="small" startIcon={<AttachmentIcon />}>
-          10
-        </Button>
-      </CardActions>
+      {shouldShowCardACtions() && (
+        <CardActions sx={{ p: "0 4px 8px 4px" }}>
+          {!!card?.members?.length && (
+            <Button size="small" startIcon={<GroupIcon />}>
+              {card?.members?.length}
+            </Button>
+          )}
+          {!!card?.comments?.length && (
+            <Button size="small" startIcon={<CommentIcon />}>
+              {card?.comments?.length}
+            </Button>
+          )}
+
+          {!!card?.attachments?.length > 0 && (
+            <Button size="small" startIcon={<AttachmentIcon />}>
+              {card?.attachments?.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MuiCard>
   );
 }
