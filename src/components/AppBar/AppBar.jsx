@@ -63,7 +63,7 @@ function AppBar() {
               fontWeight: "bold",
             }}
           >
-            Trello
+            Task-manager
           </Typography>
         </Box>
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
