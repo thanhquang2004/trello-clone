@@ -1,16 +1,11 @@
-import { RouterProvider } from "react-router-dom";
-import router from "./routes/Routes";
+import Board from "./pages/Boards/_id";
 
 function App() {
   return (
     <>
-      <Router></Router>
+      <Board />
     </>
   );
 }
-
-const Router = () => {
-  return <RouterProvider router={router} />;
-};
 
 export default App;
