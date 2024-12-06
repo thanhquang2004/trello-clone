@@ -61,12 +61,12 @@ function BoardContent({ board }) {
   const lastOverId = useRef(null);
 
   useEffect(() => {
-    setOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, "_id"));
+    setOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, "id"));
   }, [board]);
 
   const findColumnByCardId = (cardId) => {
     return orderedColumns.find((column) =>
-      column.cards.map((card) => card._id)?.includes(cardId)
+      column.cards.map((card) => card.id)?.includes(cardId)
     );
   };
 
@@ -82,7 +82,7 @@ function BoardContent({ board }) {
     setOrderedColumns((prevColumns) => {
       //Tim vi tri (index) cua overCard trong overColumn
       const overCardIndex = overColumn?.cards.findIndex(
-        (card) => card._id === overCardId
+        (card) => card.id === overCardId
       );
       // console.log("overCardIndex", overCardIndex);
 
@@ -101,16 +101,16 @@ function BoardContent({ board }) {
 
       const nextColumns = cloneDeep(prevColumns);
       const nextActiveColumn = nextColumns.find(
-        (column) => column._id === activeColumn._id
+        (column) => column.id === activeColumn.id
       );
       const nextOverColumn = nextColumns.find(
-        (column) => column._id === overColumn._id
+        (column) => column.id === overColumn.id
       );
 
       if (nextActiveColumn) {
         //Xoa card khoi column active
         nextActiveColumn.cards = nextActiveColumn.cards.filter(
-          (card) => card._id !== activeDraggingCardId
+          (card) => card.id !== activeDraggingCardId
         );
 
         if (isEmpty(nextActiveColumn.cards)) {
@@ -119,19 +119,19 @@ function BoardContent({ board }) {
 
         //Cap nhat lai cardOrderIds cua column active
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(
-          (card) => card._id
+          (card) => card.id
         );
       }
 
       if (nextOverColumn) {
         //Kiem tra neu card da ton tai trong column over thi bo qua
         nextOverColumn.cards = nextOverColumn.cards.filter(
-          (card) => card._id !== activeDraggingCardId
+          (card) => card.id !== activeDraggingCardId
         );
 
         const rebuildActiveDraggingCardData = {
           ...activeDraggingCardData,
-          columnId: nextOverColumn._id,
+          columnId: nextOverColumn.id,
         };
         //Chen card vao column over
         nextOverColumn.cards = nextOverColumn.cards.toSpliced(
@@ -147,7 +147,7 @@ function BoardContent({ board }) {
 
         //Cap nhat lai cardOrderIds cua column over
         nextOverColumn.cardOrderIds = nextOverColumn.cards.map(
-          (card) => card._id
+          (card) => card.id
         );
       }
 
@@ -202,7 +202,7 @@ function BoardContent({ board }) {
       return;
     }
 
-    if (activeColumn._id !== overColumn._id) {
+    if (activeColumn.id !== overColumn.id) {
       moveCardBetweenDifferentColumns(
         activeColumn,
         overColumn,
@@ -247,8 +247,8 @@ function BoardContent({ board }) {
       //Hanh dong keo tha card giua 2 column khac nhau
       //Phai dung toi activeDragItemData (set vao state tu buoc handleDragStart) chu khong phai activeData
       //trong scope handleDragEnd nay vi sau khi di qua onDragOver la state cua card da bi cap nhap 1 lan
-      if (oldColumns._id !== overColumn._id) {
-        if (activeColumn._id !== overColumn._id) {
+      if (oldColumns.id !== overColumn.id) {
+        if (activeColumn.id !== overColumn.id) {
           moveCardBetweenDifferentColumns(
             activeColumn,
             overColumn,
@@ -261,10 +261,10 @@ function BoardContent({ board }) {
         }
       } else {
         const oldCardIndex = oldColumns.cards.findIndex(
-          (c) => c._id === activeDragItemId
+          (c) => c.id === activeDragItemId
         );
         const newCardIndex = overColumn.cards.findIndex(
-          (c) => c._id === overCardId
+          (c) => c.id === overCardId
         );
 
         const dndOrderedCards = arrayMove(
@@ -276,12 +276,12 @@ function BoardContent({ board }) {
           const nextColumns = cloneDeep(prevColumns);
 
           const nextOverColumn = nextColumns.find(
-            (c) => c._id === overColumn._id
+            (c) => c.id === overColumn.id
           );
           //Cap nhat lai cardOrderIds cua column over
           if (nextOverColumn) {
             nextOverColumn.cards = dndOrderedCards;
-            nextOverColumn.cardOrderIds = dndOrderedCards.map((c) => c._id);
+            nextOverColumn.cardOrderIds = dndOrderedCards.map((c) => c.id);
           }
 
           return nextColumns;
@@ -293,12 +293,12 @@ function BoardContent({ board }) {
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
       if (active.id !== over.id) {
         //Lay vi tri cu tu active
-        const oldIndex = orderedColumns.findIndex((c) => c._id === active.id);
+        const oldIndex = orderedColumns.findIndex((c) => c.id === active.id);
         //Lay vi tri moi tu over
-        const newIndex = orderedColumns.findIndex((c) => c._id === over.id);
+        const newIndex = orderedColumns.findIndex((c) => c.id === over.id);
 
         const dndOrderedColumns = arrayMove(orderedColumns, oldIndex, newIndex);
-        // const dndColumnOrderIds = dndOrderedColumns.map((c) => c._id);
+        // const dndColumnOrderIds = dndOrderedColumns.map((c) => c.id);
 
         setOrderedColumns(dndOrderedColumns);
       }
@@ -341,7 +341,7 @@ function BoardContent({ board }) {
       let overId = getFirstCollision(pointerIntersection, "id");
       if (overId) {
         const checkColumn = orderedColumns.find(
-          (column) => column._id === overId
+          (column) => column.id === overId
         );
 
         if (checkColumn) {

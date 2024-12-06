@@ -16,8 +16,14 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 function Card({ card }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: card?._id, data: { ...card } });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card?.id, data: { ...card } });
 
   const dndKitCardStyle = {
     // touchAction: "none",
@@ -37,7 +43,7 @@ function Card({ card }) {
 
   return (
     <MuiCard
-    ref={setNodeRef}
+      ref={setNodeRef}
       {...attributes}
       {...listeners}
       style={dndKitCardStyle}
@@ -74,7 +80,7 @@ function Card({ card }) {
         </CardActions>
       )}
     </MuiCard>
-  ); 
+  );
 }
 
 export default Card;
