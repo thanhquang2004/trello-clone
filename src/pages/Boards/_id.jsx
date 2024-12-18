@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { fetchBoardDetailsAPI } from "~/apis";
 
 function Board() {
+
   const [board, setBoard] = useState(null);
 
   useEffect(() => {
@@ -17,11 +18,13 @@ function Board() {
     })
   }, []);
 
+
   return (
     <Container disableGutters maxWidth={false} sx={{ height: "100vh" }}>
       <AppBar />
       <BoardBar board={board} />
       <BoardContent board={board} />
+
     </Container>
   );
 }

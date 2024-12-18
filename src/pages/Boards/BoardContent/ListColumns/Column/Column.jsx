@@ -35,7 +35,7 @@ function Column({ column }) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: column?._id, data: { ...column } });
+  } = useSortable({ id: column?.id, data: { ...column } });
 
   const dndKitColumnStyle = {
     // touchAction: "none",
@@ -53,7 +53,7 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "id");
 
   return (
     <div ref={setNodeRef} {...attributes} style={dndKitColumnStyle}>
